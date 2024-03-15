@@ -1,5 +1,6 @@
-/*DROP DATABASE SharedCity*/
+/*DROP DATABASE SharedCity;*/
 CREATE database SharedCity;
+USE SharedCity;
 
 CREATE TABLE USUARIO(
 ID integer auto_increment primary key,
@@ -12,7 +13,7 @@ Localidad varchar(30),
 email varchar(50),
 Username varchar(20),
 Password varchar(255),
-Salt BINARY,
+Salt BINARY (16),
 Foto_perfil blob,
 Guia boolean
 );
@@ -21,10 +22,10 @@ CREATE TABLE RUTA(
 ID integer auto_increment primary key,
 Nombre varchar(50),
 Distancia float,
-Fecha_Creacion date,
-ID_UsuarioPropietario integer,
+Fecha_Creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,/*SE CREA AUTOMATICO*/
+ID_USUARIO_PROPIETARIO integer,
 
-foreign key (ID_UsuarioPropietario) REFERENCES Usuario(ID)
+foreign key (ID_USUARIO_PROPIETARIO) REFERENCES Usuario(ID)
 );
 
 CREATE TABLE PUNTO_INTERES(
