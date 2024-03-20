@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UsuarioService {
@@ -26,41 +23,39 @@ public class UsuarioService {
 
     public List<Usuario> getAll() {
         List<Usuario> listaTotalUsuarios =  usuarioRepository.findAll();
-        //List<Usuario> listaTotalUsuariosOrdenada =  ordenarUsuarios(listaTotalUsuarios);
-
-        return listaTotalUsuarios;
+        return  ordenarUsuarios(listaTotalUsuarios);
     }
 //  OJO CUIDAAAAAO AQUI
-//                private List<Usuario> ordenarUsuarios(List<Usuario> listaTotalUsuarios) {
-//
-//                        Map<Usuario, Double> promedioValoracionesPorUsuario = new HashMap<>();
-//
-//                        // Calcular el promedio de las valoraciones por usr
-//                        for (Usuario usuario : listaTotalUsuarios) {
-//                            List<ValoracionUsuario> valoracionesDeUsuario = valoracion_usuarioRepository.findByu_valorado(usuario);
-//                            double promedioValoraciones = calcularPromedioValoraciones(valoracionesDeUsuario);
-//                            promedioValoracionesPorUsuario.put(usuario, promedioValoraciones);
-//                        }
-//
-//                    // Ordenar los usuarios según el promedio de sus valoraciones
-//                    listaTotalUsuarios.sort((usuario1, usuario2) -> {
-//                        double promedio1 = promedioValoracionesPorUsuario.getOrDefault(usuario1, 0.0);
-//                        double promedio2 = promedioValoracionesPorUsuario.getOrDefault(usuario2, 0.0);
-//                        return Double.compare(promedio2, promedio1); // Orden descendente
-//                    });
-//
-//                    return listaTotalUsuarios;
-//                    }
-//                private double calcularPromedioValoraciones(List<ValoracionUsuario> valoraciones) {
-//                    if (valoraciones.isEmpty()) {
-//                        return 0.0; // Si no hay valoraciones, el promedio es 0
-//                    }
-//                    double sumaValoraciones = 0.0;
-//                    for (ValoracionUsuario valoracion : valoraciones) {
-//                        sumaValoraciones += valoracion.getPuntosEstrellas();
-//                    }
-//                    return sumaValoraciones / valoraciones.size();
-//                }
+                private List<Usuario> ordenarUsuarios(List<Usuario> listaTotalUsuarios) {
+
+                        Map<Usuario, Double> promedioValoracionesPorUsuario = new HashMap<>();
+
+                        // Calcular el promedio de las valoraciones por usr
+                        for (Usuario usuario : listaTotalUsuarios) {
+                            List<ValoracionUsuario> valoracionesDeUsuario = valoracion_usuarioRepository.findByuValorado(usuario);
+                            double promedioValoraciones = calcularPromedioValoraciones(valoracionesDeUsuario);
+                            promedioValoracionesPorUsuario.put(usuario, promedioValoraciones);
+                        }
+
+                    // Ordenar los usuarios según el promedio de sus valoraciones
+                    listaTotalUsuarios.sort((usuario1, usuario2) -> {
+                        double promedio1 = promedioValoracionesPorUsuario.getOrDefault(usuario1, 0.0);
+                        double promedio2 = promedioValoracionesPorUsuario.getOrDefault(usuario2, 0.0);
+                        return Double.compare(promedio2, promedio1); // Orden descendente
+                    });
+
+                    return listaTotalUsuarios;
+                    }
+                private double calcularPromedioValoraciones(List<ValoracionUsuario> valoraciones) {
+                    if (valoraciones.isEmpty()) {
+                        return 0.0; // Si no hay valoraciones, el promedio es 0
+                    }
+                    double sumaValoraciones = 0.0;
+                    for (ValoracionUsuario valoracion : valoraciones) {
+                        sumaValoraciones += valoracion.getPuntosEstrellas();
+                    }
+                    return sumaValoraciones / valoraciones.size();
+                }
 
     public Usuario comprobarYRegistrarUsuario(Usuario usuario) {
         // Verificar si el nombre de usuario ya existe
@@ -106,6 +101,28 @@ public class UsuarioService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<ValoracionUsuario> getListaValoraciones(Integer id_usuario){
+        List<Usuario> listaUsuarios = usuarioRepository.findAll();
+        List<ValoracionUsuario> valoracionesDelUsuarioConcreto = new ArrayList<>();
+        for(Usuario usuario : listaUsuarios){
+            if(usuario.getId()==id_usuario){
+                valoracionesDelUsuarioConcreto = valoracion_usuarioRepository.findByuValorado(usuario);
+            }
+        }
+        return valoracionesDelUsuarioConcreto;
+    }
+
+    public List<ValoracionUsuario> getListaValoracionesQueYoHeHecho(Integer id_usuario){
+        List<Usuario> listaUsuarios = usuarioRepository.findAll();
+        List<ValoracionUsuario> valoracionesDelUsuarioConcreto = new ArrayList<>();
+        for(Usuario usuario : listaUsuarios){
+            if(usuario.getId()==id_usuario){
+                valoracionesDelUsuarioConcreto = valoracion_usuarioRepository.findByuValorante(usuario);
+            }
+        }
+        return valoracionesDelUsuarioConcreto;
     }
 
 }

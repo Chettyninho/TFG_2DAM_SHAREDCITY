@@ -38,5 +38,9 @@ public class RutaController {
         System.out.println("eval " + id_entidadValorante + "\nRuta: " + id_ruta);
         valoracion_rutaService.valorarRuta(id_entidadValorante, id_ruta, valoracionRuta);
     }
-    //tendra que acceder a las valoraciones de las rutas
+
+
+    //FALTA HACER...
+    // acceder a las valoraciones de las rutas
+    //...
 }

@@ -21,10 +21,10 @@ public class Valoracion_UsuarioService {
         //recorremos la lista y asignamos los valorescoincidentes a valoracionUsuario
         for (Usuario u : totalUsuarios) {
             if(u.getId() == id_EntidadValorante){
-                valUsuario.setU_valorante(u);
+                valUsuario.setUValorante(u);
             }
             if(u.getId() == id_valorado){
-                valUsuario.setU_valorado(u);
+                valUsuario.setUValorado(u);
             }
         }
 

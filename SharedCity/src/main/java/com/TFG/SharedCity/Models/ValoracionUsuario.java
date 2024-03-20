@@ -20,10 +20,10 @@ public class ValoracionUsuario {
 
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO_VALORANTE")
-    private Usuario u_valorante;
+    private Usuario uValorante;
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO_VALORADO")
-    private Usuario u_valorado;
+    private Usuario uValorado;
 
     @Column(name = "Titulo_valoracion")
     private String tituloValoracion;

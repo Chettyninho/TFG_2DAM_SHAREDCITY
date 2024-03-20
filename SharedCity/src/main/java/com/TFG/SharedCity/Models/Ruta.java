@@ -30,10 +30,5 @@ public class Ruta {
     private Usuario usuarioPropietario; // Cambié el nombre de la variable según convención
 
 
-    //faltan las relaciones entre tablas
-    //cuando se cree una nueva ruuta, se mandara desde android
-    //lo que viene aqui a excepcion del id del usuario, que se mandara como parametro.
-    //entocnes con ese se hará una busqueda entre todos los usuarios y el que coincida se asignara al u_valorado
-
 
 }

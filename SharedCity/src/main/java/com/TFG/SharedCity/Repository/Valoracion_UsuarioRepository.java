@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface Valoracion_UsuarioRepository extends JpaRepository<ValoracionUsuario,Integer> {
-    //List<ValoracionUsuario> findByu_valorado(Usuario usuario);
+    List<ValoracionUsuario> findByuValorado(Usuario usuario);
+    List<ValoracionUsuario> findByuValorante(Usuario usuario);
 }

@@ -25,18 +25,17 @@ public class RutaService {
         return rutaRepository.findAll();
     }
     public List<Ruta> findAllByUser(Integer id_usuario) {
-        List<Ruta> todasLasRutas =  rutaRepository.findAll();
+        List<Ruta> todasLasRutas = rutaRepository.findAll();
         List<Ruta> rutasDeUsuario = new ArrayList();
-        for(Ruta ruta : todasLasRutas){
-            if(ruta.getUsuarioPropietario().getId()==id_usuario){
+        for (Ruta ruta : todasLasRutas) {
+            if (ruta.getUsuarioPropietario().getId() == id_usuario) {
                 rutasDeUsuario.add(ruta);
             }
         }
-        List<Ruta> rutasOrdenadasPorValoracion = ordenarRutasPorValoraciones(rutasDeUsuario);
-        return rutasOrdenadasPorValoracion;
+        return ordenarRutasPorValoraciones(rutasDeUsuario);
     }
 
-    // Ordenación de la lista de rutas de un usuario según sus valoraciones
+          // Ordenación de la lista de rutas de un usuario según sus valoraciones
     public List<Ruta> ordenarRutasPorValoraciones(List<Ruta> rutasDeUsuario) {
         Map<Ruta, Double> promedioValoracionesPorRuta = new HashMap<>();
 

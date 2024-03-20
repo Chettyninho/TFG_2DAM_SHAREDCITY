@@ -35,6 +35,14 @@ public class UsuarioController {
         valoracion_usuarioService.valorarUsuario(id_entidadValorante, id_valorado, valUsuario);
     }
 
+    @GetMapping("/getAllValoraciones/{id_usuario}")
+    public List<ValoracionUsuario> getAllValoracionesUsr(@PathVariable Integer id_usuario){
+        return usuarioService.getListaValoraciones(id_usuario);
+    }
 
+    @GetMapping("/getAllValoracionesQueYoHeHecho/{id_usuario}")
+    public List<ValoracionUsuario> getAllValoracionesQueYoHeHecho(@PathVariable Integer id_usuario){
+        return usuarioService.getListaValoracionesQueYoHeHecho(id_usuario);
+    }
 
 }
