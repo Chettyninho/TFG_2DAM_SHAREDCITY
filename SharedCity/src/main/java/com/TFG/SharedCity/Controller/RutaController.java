@@ -8,6 +8,7 @@ import com.TFG.SharedCity.Service.Valoracion_RutaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -40,6 +41,12 @@ public class RutaController {
     }
 
 
+
+    //get valoraciones ruta
+    @GetMapping("/valoraciones/getAll/{id_ruta}")
+    public List<ValoracionRuta> getValoracionesRuta(@PathVariable Integer id_ruta){
+        return valoracion_rutaService.getAllValoraciones(id_ruta);
+    }
     //FALTA HACER...
     // acceder a las valoraciones de las rutas
     //...

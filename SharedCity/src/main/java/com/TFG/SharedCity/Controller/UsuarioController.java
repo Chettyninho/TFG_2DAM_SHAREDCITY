@@ -34,12 +34,12 @@ public class UsuarioController {
         System.out.println("eval " + id_entidadValorante + "\nEvalorador: " + id_valorado);
         valoracion_usuarioService.valorarUsuario(id_entidadValorante, id_valorado, valUsuario);
     }
-
+//valoraciones quese le han hecho a unusuario
     @GetMapping("/getAllValoraciones/{id_usuario}")
     public List<ValoracionUsuario> getAllValoracionesUsr(@PathVariable Integer id_usuario){
         return usuarioService.getListaValoraciones(id_usuario);
     }
-
+//valoraciones que yo he hecho
     @GetMapping("/getAllValoracionesQueYoHeHecho/{id_usuario}")
     public List<ValoracionUsuario> getAllValoracionesQueYoHeHecho(@PathVariable Integer id_usuario){
         return usuarioService.getListaValoracionesQueYoHeHecho(id_usuario);

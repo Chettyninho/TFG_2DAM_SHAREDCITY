@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class Valoracion_RutaService {
@@ -35,5 +36,16 @@ public class Valoracion_RutaService {
             }
         }
         valoracion_rutaRepository.save(valoracionRuta);
+    }
+
+    public List<ValoracionRuta> getAllValoraciones(Integer idRuta) {
+        List<ValoracionRuta> totalValoraciones = valoracion_rutaRepository.findAll();
+        List<ValoracionRuta> valoracionesDeUnaRuta = new ArrayList<>();
+        for (ValoracionRuta v : totalValoraciones){
+            if (v.getRutaValorada().getId()==idRuta){
+                valoracionesDeUnaRuta.add(v);
+            }
+        }
+        return valoracionesDeUnaRuta;
     }
 }
