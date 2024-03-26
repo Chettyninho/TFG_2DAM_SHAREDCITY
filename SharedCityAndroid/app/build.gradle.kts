@@ -40,4 +40,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0") //la version es la del video de yutu no la ultima
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    //ImageRounded
+    implementation ("com.makeramen:roundedimageview:2.3.0")
+
 }
