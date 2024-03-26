@@ -1,6 +1,6 @@
-package Retrofit;
+package com.example.sharedcity.Retrofit;
 
-import com.example.goodcloset.Entidades.Usuario;
+//import com.example.goodcloset.Entidades.Usuario;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

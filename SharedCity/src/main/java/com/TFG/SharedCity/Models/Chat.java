@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "CHAT")
+@Table(name = "chat")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -21,14 +21,15 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_EMISOR")
-    private Usuario u_emisor;
-    @ManyToOne
-    @JoinColumn(name = "ID_RECEPTOR")
-    private Usuario u_receptor;
+    @Column(name = "ID_EMISOR")
+    private Integer idEmisor;
 
-    private String Mensaje;
-    private Timestamp FechaHora;
+    @Column(name = "ID_RECEPTOR")
+    private Integer idReceptor;
 
+    @Column(name = "Mensaje")
+    private String mensaje;
+
+    @Column(name = "FechaHora")
+    private Timestamp fechaHora;
 }

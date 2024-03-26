@@ -1,4 +1,4 @@
-package Retrofit;
+package com.example.sharedcity.Retrofit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -10,16 +10,19 @@ public class ApiClient {
     private static ApiClient instance = null;
     private static Retrofit retrofitClient = null;
     private static ApiService apiService = null;
+
+    private static UserServiceApi userServiceApi;
     private ApiClient(){
         OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
         OkHttpClient okHttpClient = okHttpBuilder.build();
         retrofitClient =  new Retrofit.Builder()
-                .baseUrl("http://192.168.56.1:8086")                            // Ajustar con ip propia
+                .baseUrl("http://192.168.1.137:8086")                            // Ajustar con ip propia
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
         apiService =   retrofitClient.create(ApiService.class);
+        userServiceApi = retrofitClient.create(UserServiceApi.class);
     }
 
 //instancia del metodo de creacion de la apiClient
@@ -34,4 +37,7 @@ public class ApiClient {
         return apiService;
     }
 
+    public static UserServiceApi getUserServiceApi(){
+        return getInstance().userServiceApi;
+    }
 }

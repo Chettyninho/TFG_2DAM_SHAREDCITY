@@ -6,6 +6,7 @@ import com.TFG.SharedCity.Models.ValoracionRuta;
 import com.TFG.SharedCity.Models.ValoracionUsuario;
 import com.TFG.SharedCity.Repository.UsuarioRepository;
 import com.TFG.SharedCity.Repository.Valoracion_UsuarioRepository;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -123,6 +124,14 @@ public class UsuarioService {
             }
         }
         return valoracionesDelUsuarioConcreto;
+    }
+
+    public List<Usuario> getChatsByUserId(Integer userId){
+        return usuarioRepository.getChatsByUserId(userId);
+    }
+
+    public Usuario getUserById(Integer id){
+        return usuarioRepository.findById(id).get();
     }
 
 }

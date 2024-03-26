@@ -1,12 +1,14 @@
 package com.TFG.SharedCity.Controller;
 
 import com.TFG.SharedCity.Models.Usuario;
+import com.TFG.SharedCity.Models.UsuarioChat;
 import com.TFG.SharedCity.Models.ValoracionUsuario;
 import com.TFG.SharedCity.Service.UsuarioService;
 import com.TFG.SharedCity.Service.Valoracion_UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,4 +47,15 @@ public class UsuarioController {
         return usuarioService.getListaValoracionesQueYoHeHecho(id_usuario);
     }
 
+//Metodo GET para obtener los chats de un usuario
+    @GetMapping("/chats/{userId}")
+    public List<UsuarioChat> getChatsByUserId(@PathVariable Integer userId){
+        List<UsuarioChat> lista = new ArrayList<>();
+        Usuario a = usuarioService.getUserById(userId);
+        lista.add(new UsuarioChat(a.getId(),a.getNombre()));
+        for (Usuario u : usuarioService.getChatsByUserId(userId)){
+            lista.add(new UsuarioChat(u.getId(),u.getNombre()));
+        }
+        return lista;
+    }
 }

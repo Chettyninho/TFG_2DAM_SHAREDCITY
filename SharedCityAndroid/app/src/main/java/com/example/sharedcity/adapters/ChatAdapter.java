@@ -10,15 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharedcity.R;
+import com.example.sharedcity.models.User;
 
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder> {
     Context context;
-    List<String> nombres;
+    List<User> usuarios;
 
-    public ChatAdapter(Context context, List<String> nombres){
-        this.nombres = nombres;
+    public ChatAdapter(Context context, List<User> usuarios){
+        this.usuarios = usuarios;
         this.context = context;
     }
     @NonNull
@@ -31,12 +32,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ChatAdapter.ChatHolder holder, int position) {
-        holder.tv.setText(nombres.get(position));
+        holder.tv.setText(usuarios.get(position).getNombre());
     }
 
     @Override
     public int getItemCount() {
-        return nombres.size();
+        return usuarios.size();
     }
 
     public class ChatHolder extends RecyclerView.ViewHolder{
