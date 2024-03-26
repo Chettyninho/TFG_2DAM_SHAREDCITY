@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_height="100dp"
                 android:layout_weight="0.1"
                 android:padding="10dp"
-                android:src="@tools:sample/avatars"
+                android:src="@drawable/baseline_account_circle_24"
                 app:riv_corner_radius="20dp"
                 app:riv_oval="true" />
 
@@ -41,8 +42,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0.9"
-                    android:gravity="center"
-                    android:text="Nombre" />
+                    android:gravity="center|start"
+                    android:paddingStart="20dp"
+                    android:text="NOMBRE"
+                    android:textSize="18dp" />
 
                 <ImageView
                     android:id="@+id/img_chat_delete"

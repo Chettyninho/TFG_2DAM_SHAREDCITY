@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.sharedcity"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.sharedcity"
